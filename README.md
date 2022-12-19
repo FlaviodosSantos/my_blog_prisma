@@ -1,3 +1,3 @@
-Api REST de um blog com PRISMA e DOcker Compose com POSTGRES, seguindo esse tuto:
+Api REST de um blog com Prisma e Docker Compose com Postgres, seguindo esse tutorial:
 
-https://www.digitalocean.com/community/tutorials/how-to-build-a-rest-api-with-prisma-and-postgresql-pt
+https://www.digitalocean.com/community/tutorials/how-to-build-a-rest-api-with-prisma-and-postgresql
