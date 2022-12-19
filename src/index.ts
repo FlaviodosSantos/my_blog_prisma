@@ -1,35 +1,17 @@
 import { PrismaClient } from "@prisma/client";
+import express from "express";
 
 const prisma = new PrismaClient();
+const app = express();
 
-async function main() {
-  // ... your Prisma Client queries will go here
-  const newUser = await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
-      posts: {
-        create: {
-          title: "Hello World",
-        },
-      },
-    },
-  });
-  console.log("Created new user: ", newUser);
+app.use(express.json());
 
-  const allUsers = await prisma.user.findMany({
-    include: { posts: true },
-  });
-  console.log("All users: ");
-  console.dir(allUsers, { depth: null });
-}
+// ... your REST API routes will go here
+app.get("/users", async (req, res) => {
+  const users = await prisma.user.findMany();
+  res.json(users);
+});
 
-main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+app.listen(3000, () =>
+  console.log("REST API server ready at: http://localhost:3000")
+);
